@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello React!</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Load React and ReactDOM libraries -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script>
+      // Define a React function component called App
+      function App() {
+        // Declare a state variable 'time' using the useState hook
+        const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
+        // Define an effect that updates 'time' every second
+        React.useEffect(function () {
+          // Set up an interval to update 'time' every second
+          setInterval(function () {
+            setTime(new Date().toLocaleTimeString());
+          }, 1000);
+        }, []); // Empty dependency array means the effect runs only once after initial render
+
+        // Return a React element representing a header with dynamic time content
+        return React.createElement("header", null, `Hello React! It's ${time}`);
+      }
+
+      // Create a root ReactDOM instance and render the App component
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(React.createElement(App));
+    </script>
+  </body>
+</html>
